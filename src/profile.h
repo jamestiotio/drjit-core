@@ -10,9 +10,9 @@
 extern void *jitc_profile_register_string(const char *message);
 extern void jitc_profile_mark(const char *message);
 extern void jitc_profile_mark_handle(const void *handle);
-extern void jitc_profile_range_push(const char *message);
-extern void jitc_profile_range_push_handle(const void *handle);
-extern void jitc_profile_range_pop();
+extern void jitc_profile_range_begin(const char *message);
+extern void jitc_profile_range_begin_handle(const void *handle);
+extern void jitc_profile_range_end();
 
 struct ProfilerRegion {
     explicit ProfilerRegion(const char *ptr) : handle(jitc_profile_register_string(ptr)) { }
@@ -21,10 +21,10 @@ struct ProfilerRegion {
 
 struct ProfilerPhase {
     ProfilerPhase(const ProfilerRegion &region) {
-        jitc_profile_range_push_handle(region.handle);
+        jitc_profile_range_begin_handle(region.handle);
     }
 
     ~ProfilerPhase() {
-        jitc_profile_range_pop();
+        jitc_profile_range_end();
     }
 };

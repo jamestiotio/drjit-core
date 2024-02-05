@@ -1337,12 +1337,12 @@ void jit_profile_mark(const char *message) {
     jitc_profile_mark(message);
 }
 
-void jit_profile_range_push(const char *message) {
-    jitc_profile_range_push(message);
+void jit_profile_range_begin(const char *message) {
+    jitc_profile_range_begin(message);
 }
 
-void jit_profile_range_pop() {
-    jitc_profile_range_pop();
+void jit_profile_range_end() {
+    jitc_profile_range_end();
 }
 
 size_t llvm_expand_threshold = 1024 * 1024; // 1M entries

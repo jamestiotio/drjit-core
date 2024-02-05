@@ -43,7 +43,7 @@ void jitc_profile_mark_handle(const void *message) {
     }
 }
 
-void jitc_profile_range_push(const char *message) {
+void jitc_profile_range_begin(const char *message) {
     if (nvtxDomain) {
         nvtxEventAttributes_t event{};
         event.version = NVTX_VERSION;
@@ -54,7 +54,7 @@ void jitc_profile_range_push(const char *message) {
     }
 }
 
-void jitc_profile_range_push_handle(const void *message) {
+void jitc_profile_range_begin_handle(const void *message) {
     if (nvtxDomain) {
         nvtxEventAttributes_t event{};
         event.version = NVTX_VERSION;
@@ -65,7 +65,7 @@ void jitc_profile_range_push_handle(const void *message) {
     }
 }
 
-void jitc_profile_range_pop() {
+void jitc_profile_range_end() {
     if (nvtxDomain)
         nvtxDomainRangePop(nvtxDomain);
 }
